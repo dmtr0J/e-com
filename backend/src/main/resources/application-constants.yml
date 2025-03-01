@@ -1,0 +1,11 @@
+frontend:
+  url: "http://localhost:4200"
+
+jwt:
+  secret: 533718bb88b23628839b8634c29e8c0418830b44d8b1f08a7a6226d2585a58caa9fb3442a1f853a771e70c5461d981911bab4de8c66c6f6faae1b7073fa56151
+  issuer: e-com
+  expiration:
+    access:
+      millis: 1800000 # 30 minutes
+    refresh:
+      millis: 86400000 # 24 hours

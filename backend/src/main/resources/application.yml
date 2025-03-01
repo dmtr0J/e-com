@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: backend
+  profiles:
+    active: "@spring.profile.active@"
+    group:
+      develop: postgres, constants, swagger
+      production:
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
