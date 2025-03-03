@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@use "fonts";
+
+:root {
+  --dark-color: #000000;
+  --light-color: #EFF2F6;
+  --grey-color: #C4C4C4;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  margin: 0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
