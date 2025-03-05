@@ -1,0 +1,42 @@
+<form
+  class="login-form"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h1>Login</h1>
+
+  <mat-form-field class="form-field">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email"
+           placeholder="example@test.com">
+    @if (emailControl && emailControl.hasError('email') && !emailControl.hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+    }
+    @if (emailControl && emailControl.hasError('required')) {
+      <mat-error>Email is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+    <button
+      type="button"
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    @if (passwordControl && passwordControl.hasError('required')) {
+      <mat-error>Password is required</mat-error>
+    }
+    @if (passwordControl && passwordControl.hasError('minlength')) {
+      <mat-error>Password must be at least 6 characters long.</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-flat-button type="submit">Login</button>
+
+</form>
