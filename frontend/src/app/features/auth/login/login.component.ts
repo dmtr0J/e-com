@@ -1,28 +1,21 @@
 import {Component, signal} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule, MatIconButton} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {LoginForm} from './login-form';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators
-} from '@angular/forms';
+import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {LoginForm} from './models/login-form';
 
 @Component({
   selector: 'app-login',
   imports: [
     MatFormField,
     MatLabel,
-    FormsModule,
     ReactiveFormsModule,
     MatIconButton,
-    MatIconModule,
+    MatIcon,
     MatInputModule,
-    MatButtonModule
+    MatButton
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -34,7 +27,7 @@ export class LoginComponent {
     this.loginForm = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-    })
+    });
   }
 
   get emailControl()  {
@@ -45,7 +38,7 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
-  hide = signal(true);
+  hide = signal<boolean>(true);
 
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());

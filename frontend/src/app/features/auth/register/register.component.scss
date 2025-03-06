@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin-bottom: 12px;
+}
+
+.register-form {
+  display: grid;
+  grid-template-columns: 300px;
+}
+
+.form-field {
+  margin-bottom: 5px;
+}

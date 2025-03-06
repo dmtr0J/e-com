@@ -1,0 +1,69 @@
+<form
+  class="register-form"
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h1>Register</h1>
+
+  <mat-form-field class="form-field">
+    <mat-label>First name</mat-label>
+    <input type="text" matInput formControlName="firstName"/>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Middle name</mat-label>
+    <input type="text" matInput formControlName="middleName"/>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Last name</mat-label>
+    <input type="text" matInput formControlName="lastName"/>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Phone</mat-label>
+    <input type="tel" matInput formControlName="phone" placeholder="099777333"/>
+    <mat-icon matSuffix>phone</mat-icon>
+    @if (phoneControl?.hasError('pattern') && !phoneControl?.hasError('required')) {
+      <mat-error>Phone number must contain 10 digits</mat-error>
+    }
+    @if (phoneControl?.hasError('required')) {
+      <mat-error>Phone is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" placeholder="test@example.com"/>
+    <mat-icon matSuffix>email</mat-icon>
+    @if (emailControl?.hasError('email') && !emailControl?.hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+    }
+    @if (emailControl?.hasError('required')) {
+      <mat-error>Email is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+    <button
+      type="button"
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    @if (passwordControl?.hasError('required')) {
+      <mat-error>Password is required</mat-error>
+    }
+    @if (passwordControl?.hasError('minlength')) {
+      <mat-error>Password must be at least 6 characters long.</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-flat-button type="submit">Sign Up</button>
+
+</form>
