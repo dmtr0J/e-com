@@ -9,10 +9,10 @@
     <mat-label>Email</mat-label>
     <input type="email" matInput formControlName="email" placeholder="test@example.com">
     <mat-icon matSuffix>email</mat-icon>
-    @if (emailControl?.hasError('email') && !emailControl?.hasError('required')) {
+    @if (loginForm.controls.email.errors?.['email'] && !loginForm.controls.email.errors?.['required']) {
       <mat-error>Please enter a valid email address</mat-error>
     }
-    @if (emailControl?.hasError('required')) {
+    @if (loginForm.controls.email.errors?.['required']) {
       <mat-error>Email is required</mat-error>
     }
   </mat-form-field>
@@ -29,10 +29,10 @@
     >
       <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    @if (passwordControl?.hasError('required')) {
+    @if (loginForm.controls.password.errors?.['required']) {
       <mat-error>Password is required</mat-error>
     }
-    @if (passwordControl?.hasError('minlength')) {
+    @if (loginForm.controls.password.errors?.['minlength']) {
       <mat-error>Password must be at least 6 characters long.</mat-error>
     }
   </mat-form-field>
