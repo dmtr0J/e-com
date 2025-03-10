@@ -1,6 +1,8 @@
 package com.practice.backend.config;
 
 import com.practice.backend.model.enums.Role;
+import com.practice.backend.security.exception.DelegatedAccessDeniedHandler;
+import com.practice.backend.security.exception.DelegatedAuthenticationEntryPoint;
 import com.practice.backend.security.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static com.practice.backend.api.v1.ApiConstants.API;
@@ -35,8 +38,10 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    CustomCorsConfiguration corsConfiguration,
-                                                   JwtAuthenticationFilter jwtAuthenticationFilter)
-            throws Exception {
+                                                   JwtAuthenticationFilter jwtAuthenticationFilter,
+                                                   DelegatedAuthenticationEntryPoint delegatedAuthenticationEntryPoint)
+
+    throws Exception {
         return http
                 .securityMatcher(API + MATCH_ALL_PATHS)
                 .authorizeHttpRequests(authorize -> authorize
@@ -60,7 +65,12 @@ public class SecurityConfiguration {
                         )
                         .hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
                 )
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(delegatedAuthenticationEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler())
+                )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfiguration))
@@ -76,4 +86,10 @@ public class SecurityConfiguration {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new DelegatedAccessDeniedHandler();
+    }
+
 }

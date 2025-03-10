@@ -1,6 +1,5 @@
 package com.practice.backend.api.v1.common;
 
-import com.practice.backend.api.v1.exception.HttpRequestMethodNotSupportedException;
 import com.practice.backend.converter.BaseConverter;
 import com.practice.backend.filtering.common.FilterableProperty;
 import com.practice.backend.filtering.common.FilteringOperation;
@@ -24,10 +23,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -173,7 +174,7 @@ public abstract class AbstractController<
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public ApiResponseType patchRecord(
-            @PathVariable(value = "id") Long id, @RequestBody Map<String, Object> request) {
+            @PathVariable(value = "id") Long id, @RequestBody Map<String, Object> request) throws HttpRequestMethodNotSupportedException {
         BaseControllerUtil.checkPatchRequest(request);
         EntityType entity = getById(id);
 
@@ -197,8 +198,8 @@ public abstract class AbstractController<
      * @param entity        The entity in which the updates need to be done.
      * @param fieldsToPatch A Map of the JSON fields in the request. These values should be updated in the entity.
      */
-    protected void patchFields(EntityType entity, Map<String, Object> fieldsToPatch) {
-        throw new HttpRequestMethodNotSupportedException("PATCH");
+    protected void patchFields(EntityType entity, Map<String, Object> fieldsToPatch) throws HttpRequestMethodNotSupportedException {
+        throw new HttpRequestMethodNotSupportedException(HttpMethod.PATCH.name());
     }
 
     @DeleteMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})

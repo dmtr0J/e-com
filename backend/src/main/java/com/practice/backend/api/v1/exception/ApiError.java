@@ -5,24 +5,29 @@ import lombok.Getter;
 import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
-import java.util.Objects;
+import java.util.Collections;
+import java.util.List;
 
 @Getter
 @ToString
 @AllArgsConstructor
 public class ApiError {
 
-    private final HttpStatus status;
+    private HttpStatus status;
+    private String title;
+    private String errorClass;
+    private List<String> errors;
 
-    private final String errorClass;
-
-    private final String title;
-
-    public ApiError(Throwable exception, HttpStatus status) {
+    public ApiError(HttpStatus status, Throwable exception, List<String> errors) {
         this.status = status;
-        final Throwable ex = Objects.requireNonNull(exception);
-        title = ex.getMessage();
-        errorClass = ex.getClass().getSimpleName();
+        this.title = exception.getMessage();
+        this.errorClass = exception.getClass().getSimpleName();
+        this.errors = errors;
     }
+
+    public ApiError(HttpStatus status, Throwable exception, String error) {
+        this(status, exception, Collections.singletonList(error));
+    }
+
 }
 
