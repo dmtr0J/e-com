@@ -1,11 +1,12 @@
-import {Component, inject, signal} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Component, signal, WritableSignal} from '@angular/core';
+import {FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {LoginForm} from './models/login-form.interface';
 import {AuthService} from '../../../core/services/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +23,14 @@ import {AuthService} from '../../../core/services/auth/auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  authService = inject(AuthService);
-  loginForm: FormGroup<LoginForm>;
+  protected loginForm: FormGroup<LoginForm>;
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.nonNullable.group({
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: NonNullableFormBuilder,
+  ) {
+    this.loginForm = this.fb.group({
       email: ['', {
         validators: [Validators.required, Validators.email]
       }],
@@ -36,24 +40,14 @@ export class LoginComponent {
     });
   }
 
-  hide = signal(true);
+  isPasswordVisible: WritableSignal<boolean> = signal(false);
 
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
-  }
-
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      this.authService.loginWithEmail(
-        {
-          email: this.loginForm.value.email!,
-          password: this.loginForm.value.password!
-        }
-      ).subscribe(result => {
-          console.log(result);
-        }
-      )
+      this.authService.loginWithEmail(this.loginForm.getRawValue())
+        .subscribe(
+          () => this.router.navigate([''])
+        );
     }
   }
 

@@ -3,13 +3,13 @@
   [formGroup]="loginForm"
   (ngSubmit)="onSubmit()"
 >
-  <h1>Login</h1>
+  <span class="login-form__title">Login</span>
 
-  <mat-form-field class="form-field">
+  <mat-form-field class="login-form__input" appearance="outline">
     <mat-label>Email</mat-label>
     <input type="email" matInput formControlName="email" placeholder="test@example.com">
     <mat-icon matSuffix>email</mat-icon>
-    @if (loginForm.controls.email.errors?.['email'] && !loginForm.controls.email.errors?.['required']) {
+    @if (loginForm.controls.email.errors?.['email']) {
       <mat-error>Please enter a valid email address</mat-error>
     }
     @if (loginForm.controls.email.errors?.['required']) {
@@ -17,17 +17,17 @@
     }
   </mat-form-field>
 
-  <mat-form-field class="form-field">
+  <mat-form-field class="login-form__input" appearance="outline">
     <mat-label>Password</mat-label>
-    <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+    <input matInput formControlName="password" [type]="isPasswordVisible() ? 'text' : 'password'" />
     <button
       type="button"
       mat-icon-button
       matSuffix
-      (click)="clickEvent($event)"
-      [attr.aria-pressed]="hide()"
+      (click)="isPasswordVisible.set(!this.isPasswordVisible())"
+      [attr.aria-pressed]="isPasswordVisible()"
     >
-      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-icon>{{isPasswordVisible() ? 'visibility' : 'visibility_off'}}</mat-icon>
     </button>
     @if (loginForm.controls.password.errors?.['required']) {
       <mat-error>Password is required</mat-error>
@@ -37,5 +37,20 @@
     }
   </mat-form-field>
 
+  <a class="login-form__forgot-password">
+    <span class="login-form__forgot-password-text">Forgot password?</span>
+  </a>
+
   <button mat-flat-button type="submit">Sign In</button>
+
+  <span class="login-form__no-account">I have no account</span>
+
+  <div class="login-form__social">
+    <div class="login-form__social-item">
+      Google
+    </div>
+    <div class="login-form__social-item">
+      Github
+    </div>
+  </div>
 </form>

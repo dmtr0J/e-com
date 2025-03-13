@@ -5,15 +5,43 @@
   justify-content: center;
 }
 
-h1 {
-  margin-bottom: 12px;
-}
-
 .login-form {
   display: grid;
   grid-template-columns: 300px;
+  border: 1px, solid, var(--grey-dark);
+  padding: 20px 25px;
+  border-radius: 5px;
 }
 
-.form-field {
+.login-form__title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.login-form__input {
+  margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.login-form__forgot-password {
+
+}
+
+.login-form__forgot-password-text {
+
+}
+
+.login-form__no-account {
+
+}
+
+.login-form__social {
+
+}
+
+.login-form__social-item {
+
 }
