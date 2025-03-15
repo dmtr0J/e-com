@@ -1,0 +1,54 @@
+body {
+  font-family: var(--font-family-text);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.28;
+  color: var(--neutral-4-color);
+  background-color: var(--background-color);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, .h7 {
+  font-family: var(--font-family-heading);
+  font-weight: 500;
+}
+
+.h1 {
+  font-size: 80px;
+}
+
+.h2 {
+  font-size: 72px;
+}
+
+.h3 {
+  font-size: 54px;
+}
+
+.h4 {
+  font-size: 40px;
+}
+
+.h5 {
+  font-size: 34px;
+}
+
+.h6 {
+  font-size: 28px;
+}
+
+.h7 {
+  font-size: 20px;
+}

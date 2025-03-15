@@ -1,0 +1,12 @@
+.logo__link {
+  user-select: none;
+}
+
+.logo__text {
+  font-family: var(--font-family-heading);
+  color: var(--neutral-7-color);
+
+  //background: linear-gradient(45deg, var(--secondary-color), var(--secondary-alt-color));
+  //-webkit-background-clip: text;
+  //-webkit-text-fill-color: transparent;
+}

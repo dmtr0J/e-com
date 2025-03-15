@@ -1,0 +1,205 @@
+/**
+  Block model normalization
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Remove left padding from list elements
+  that have a class attribute
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Remove outer margins from the body and two other tags
+  that have a class attribute
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Remove vertical outer margins from specific tags
+  that have a class attribute
+ */
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Remove the default marker from unordered lists
+  that have a class attribute
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Reset vertical outer margins for paragraphs,
+  declare a local variable for bottom margin
+  to avoid conflicts with more complex selectors
+ */
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Set bottom margin for paragraphs without a class attribute,
+  unless they are the last among their sibling elements
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Simplify working with images and videos
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Inherit font properties for input fields
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Useful in most cases
+    (for example, when the footer needs to be "pushed" to the bottom)
+   */
+  height: 100%;
+  /**
+    Prevent horizontal UI jumps
+    when the scrollbar appears/disappears
+   */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Smooth scrolling
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Useful in most cases
+    (for example, when the footer needs to be "pushed" to the bottom)
+   */
+  min-height: 100%;
+  /**
+    Unified line height
+   */
+  line-height: 1.5;
+}
+
+/**
+  Normalize link height when inspecting in DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Show a pointer cursor when hovering over elements
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Unify the color of SVG elements
+  (except those with a 'fill' attribute set to 'none' or starting with 'url')
+ */
+:where([fill]:not(
+  [fill="none"],
+  [fill^="url"]
+)) {
+  fill: currentColor;
+}
+
+/**
+  Unify the color of SVG elements
+  (except those with a 'stroke' attribute set to 'none')
+ */
+:where([stroke]:not(
+  [stroke="none"],
+  [stroke^="url"]
+)) {
+  stroke: currentColor;
+}
+
+/**
+  Fix the delay in color change when interacting with SVG elements
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Set table borders to the classic 'collapse' style
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Remove all animations and transitions for people
+  who prefer not to use them
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

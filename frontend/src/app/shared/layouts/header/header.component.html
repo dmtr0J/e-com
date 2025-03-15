@@ -1,37 +1,52 @@
 <header class="header">
-  <div class="container">
-    <div class="header__logo">
-      <a href="#">InkX</a>
-    </div>
-
-    <nav class="header__nav">
-      <ul class="header__list">
-        <li><a href="#">Catalog</a></li>
-        <li><a href="#">Pricing</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">About</a></li>
+  <div class="header__inner container">
+<!--    <button-->
+<!--      class="button__burger-menu burger-button visible-mobile"-->
+<!--      type="button"-->
+<!--    >-->
+<!--      <span class="visually-hidden">Open navigation menu</span>-->
+<!--    </button>-->
+    <app-logo></app-logo>
+    <nav class="header__menu hidden-mobile">
+      <ul class="header__menu-list">
+        <li class="header__menu-item header__menu-item--active">
+          <a class="header__menu-link" href="/">Home</a>
+        </li>
+        <li class="header__menu-item">
+          <a class="header__menu-link" href="/">Shop</a>
+        </li>
+        <li class="header__menu-item">
+          <a class="header__menu-link" href="/">Product</a>
+        </li>
+        <li class="header__menu-item">
+          <a class="header__menu-link" href="/">Contact Us</a>
+        </li>
       </ul>
     </nav>
-
-    <div class="header__search">
-      <img ngSrc="/assets/svgs/search.svg" alt="search" height="16" width="16">
-      <span class="header__search-text">Search...</span>
-    </div>
-
-    <div class="header__user-actions">
-      <div class="header__cart">
-        <a href="#">
-          <img ngSrc="/assets/svgs/cart.svg" alt="cart" height="18" width="21">
-          <span>9+</span>
+    <div class="header__action">
+      <div class="header__action-search">
+        <a class="header__action-search-link" href="#">
+          <img
+            ngSrc="/assets/svgs/search.svg"
+            height="24"
+            width="24"
+            loading="lazy"
+            alt="search"
+          />
         </a>
       </div>
-
-      <div class="header__auth">
-        <button>
-          Login
-        </button>
+      <div class="header__action-profile">
+        <a class="header__action-profile-link" href="#">
+          <img
+            ngSrc="/assets/svgs/profile.svg"
+            height="24"
+            width="24"
+            loading="lazy"
+            alt="profile"
+          />
+        </a>
       </div>
+      <app-cart-action></app-cart-action>
     </div>
   </div>
-
 </header>
