@@ -1,0 +1,44 @@
+<div class="cart-drawer" [ngClass]="{ 'cart-drawer--open': isOpen }">
+  <div class="cart-drawer__inner">
+    <div class="cart-drawer__header">
+      <div class="cart-drawer__title-wrapper">
+        <h6 class="h6">Cart</h6>
+        <button
+          class="cart-drawer__close-button visible-mobile"
+          (click)="closeDrawer()"
+          type="button"
+        >
+          X
+        </button>
+      </div>
+      <div class="cart-drawer__content">
+        product-cards
+      </div>
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__amount-wrapper">
+        <div class="cart-drawer__subtotal">
+          <span class="cart-drawer__subtotal-title">Subtotal</span>
+          <span class="cart-drawer__subtotal-price">$99.00</span>
+        </div>
+        <div class="cart-drawer__total">
+          <span class="cart-drawer__total-title h7">Total</span>
+          <span class="cart-drawer__total-price h7">$234.00</span>
+        </div>
+      </div>
+      <div class="cart-drawer__checkout-wrapper">
+        <app-button label="Checkout" width="370px"></app-button>
+        <app-button
+          label="View Cart"
+          type="outlined"
+          height="22px"
+          fontSize="xs"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (isOpen) {
+  <div class="cart-overlay" (click)="closeDrawer()"></div>
+}

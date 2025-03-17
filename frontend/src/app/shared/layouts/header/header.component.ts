@@ -10,7 +10,7 @@ import {FormsModule} from '@angular/forms';
     LogoComponent,
     NgOptimizedImage,
     CartActionComponent,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

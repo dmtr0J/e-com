@@ -1,4 +1,4 @@
-<div class="cart-action">
+<div class="cart-action" (click)="toggleCart()">
   <img
     ngSrc="/assets/svgs/shopping-bag.svg"
     height="24"
@@ -7,7 +7,13 @@
     alt="shopping bag"
   />
 
-  <span class="cart-action__badge">
-    3
-  </span>
+  @if (cartItemCount() > 0) {
+    <span
+      class="cart-action__badge"
+      [ngClass]="{ 'cart-action__badge--large': cartItemCount() > 9 }">
+      {{ displayCount }}
+    </span>
+  }
 </div>
+
+<app-cart-drawer [isOpen]="isCartOpen()" (close)="toggleCart()"></app-cart-drawer>
