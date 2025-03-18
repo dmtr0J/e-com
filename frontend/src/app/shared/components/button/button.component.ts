@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgClass} from '@angular/common';
 
 @Component({
@@ -11,20 +11,16 @@ import {NgClass} from '@angular/common';
 })
 export class ButtonComponent {
   @Input() label: string = '';
-
   @Input() type: 'primary' | 'rounded' | 'outlined' = 'primary';
   @Input() transparent: boolean = false;
 
-  @Input() fontSize: 'xl' | 'l' | 'm' | 's' | 'xs' = 'm';
-  @Input() height: string = '52px';
-  @Input() width: string = 'auto';
+  @Output() onClick: EventEmitter<void> = new EventEmitter();
 
   get buttonClasses(): string[] {
     return [
       'button',
       `button--${this.type}`,
-      this.transparent ? `button--${this.type}--transparent` : '',
-      `button--${this.fontSize}`
+      this.transparent ? `button--${this.type}--transparent` : ''
     ];
   }
 

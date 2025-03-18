@@ -1,0 +1,43 @@
+.input-field {
+  position: relative;
+  transition-duration: var(--transition-duration);
+  cursor: text;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: var(--neutral-3-color);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  &__prefix,
+  &__suffix {
+    user-select: none;
+  }
+
+  &__control {
+    font-size: 16px;
+    padding: 12px 8px;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--neutral-7-color);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &__control:focus,
+  &:focus-within {
+    background-color: var(--neutral-2-color);
+  }
+}

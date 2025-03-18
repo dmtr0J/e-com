@@ -1,4 +1,5 @@
 @use 'mixins' as *;
+@use 'media' as *;
 
 .cart-drawer {
   position: fixed;
@@ -9,6 +10,11 @@
   background-color: var(--background-color);
   transition: right var(--transition-duration);
   z-index: 1000;
+
+  @include mobile {
+    right: -350px;
+    width: 350px;
+  }
 
   &--open {
     right: 0;
@@ -31,11 +37,16 @@
 
   &__title-wrapper {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 
   &__close-button {
     @include reset-button;
+    @include flex-center;
+
+    height: 24px;
+    width: 24px;
   }
 
   &__content {}
@@ -86,6 +97,18 @@
     flex-direction: column;
     row-gap: 16px;
   }
+
+  &__button {
+    &-checkout {
+      font-size: var(--button-font-size-m);
+      height: 52px;
+      width: 100%;
+    }
+
+    &-cart {
+      font-size: var(--button-font-size-xs);
+    }
+  }
 }
 
 .cart-overlay {
@@ -97,4 +120,12 @@
   background-color: var(--neutral-7-color);
   opacity: 0.3;
   z-index: 999;
+}
+
+app-button {
+  .button {
+    @include mobile {
+      width: 300px;
+    }
+  }
 }

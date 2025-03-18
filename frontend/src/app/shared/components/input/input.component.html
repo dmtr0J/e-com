@@ -1,0 +1,34 @@
+<div class="input-field" (click)="focusInputControl()">
+  <div class="input-field__inner">
+    <div class="input-field__prefix">
+      <ng-container [ngTemplateOutlet]="prefixTemplate()?.template || getPrefixTemplate() || emptyTemplate"/>
+    </div>
+    <input
+      class="input-field__control"
+      [placeholder]="placeholder"
+      [type]="type"
+      #inputControl
+    />
+    <div class="input-field__suffix">
+      <ng-container [ngTemplateOutlet]="suffixTemplate()?.template || getSuffixTemplate() || emptyTemplate"/>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyTemplate/>
+
+<ng-template #passwordPrefix>
+  <span>passwordPrefixTemplate</span>
+</ng-template>
+
+<ng-template #passwordSuffix>
+  <span>passwordSuffixTemplate</span>
+</ng-template>
+
+<ng-template #emailPrefix>
+  <span>emailPrefixTemplate</span>
+</ng-template>
+
+<ng-template #emailSuffix>
+  <span>emailSuffixTemplate</span>
+</ng-template>

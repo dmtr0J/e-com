@@ -1,12 +1,19 @@
 <header class="header">
   <div class="header__inner container">
-<!--    <button-->
-<!--      class="button__burger-menu burger-button visible-mobile"-->
-<!--      type="button"-->
-<!--    >-->
-<!--      <span class="visually-hidden">Open navigation menu</span>-->
-<!--    </button>-->
-    <app-logo class="header__logo"></app-logo>
+    <div class="header__logo-wrapper">
+      <div class="header__burger-menu burger-button visible-mobile">
+        <img
+          ngSrc="/assets/svgs/burger-menu.svg"
+          height="8"
+          width="10"
+          loading="lazy"
+          alt="menu"
+        >
+        <span class="visually-hidden">Open navigation menu</span>
+      </div>
+
+      <app-logo class="header__logo">Impressia.</app-logo>
+    </div>
     <nav class="header__menu hidden-mobile">
       <ul class="header__menu-list">
         <li class="header__menu-item header__menu-item--active">
@@ -24,7 +31,7 @@
       </ul>
     </nav>
     <div class="header__action">
-      <div class="header__action-search">
+      <div class="header__action-search hidden-mobile">
         <a class="header__action-search-link" href="#">
           <img
             ngSrc="/assets/svgs/search.svg"
@@ -32,10 +39,10 @@
             width="24"
             loading="lazy"
             alt="search"
-          />
+          >
         </a>
       </div>
-      <div class="header__action-profile">
+      <div class="header__action-profile hidden-mobile">
         <a class="header__action-profile-link" href="#">
           <img
             ngSrc="/assets/svgs/profile.svg"
@@ -46,7 +53,7 @@
           />
         </a>
       </div>
-      <app-cart-action></app-cart-action>
+      <app-cart-action/>
     </div>
   </div>
 </header>

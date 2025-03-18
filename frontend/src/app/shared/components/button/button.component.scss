@@ -2,6 +2,9 @@
 @use 'media' as *;
 
 .button {
+  height: 100%;
+  width: 100%;
+
   @include reset-button;
   @include flex-center(true);
 
@@ -65,10 +68,4 @@
       }
     }
   }
-
-  &--xl { font-size: 26px; }
-  &--l { font-size: 22px; }
-  &--m { font-size: 18px; }
-  &--s { font-size: 16px; }
-  &--xs { font-size: 14px; }
 }

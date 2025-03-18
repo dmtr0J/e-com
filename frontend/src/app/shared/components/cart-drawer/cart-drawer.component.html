@@ -8,7 +8,14 @@
           (click)="closeDrawer()"
           type="button"
         >
-          X
+          <img
+            ngSrc="/assets/svgs/close.svg"
+            height="14"
+            width="14"
+            loading="lazy"
+            alt="close"
+          >
+          <span class="visually-hidden">Close cart drawer</span>
         </button>
       </div>
       <div class="cart-drawer__content">
@@ -27,13 +34,12 @@
         </div>
       </div>
       <div class="cart-drawer__checkout-wrapper">
-        <app-button label="Checkout" width="370px"></app-button>
+        <app-button class="cart-drawer__button-checkout" label="Checkout"/>
         <app-button
+          class="cart-drawer__button-cart"
           label="View Cart"
           type="outlined"
-          height="22px"
-          fontSize="xs"
-        ></app-button>
+        />
       </div>
     </div>
   </div>

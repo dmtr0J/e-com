@@ -1,10 +1,15 @@
 @use 'mixins' as *;
+@use 'media' as *;
 
 .cart-action {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   cursor: pointer;
   column-gap: 5px;
+
+  &__image {
+    min-width: 24px;
+  }
 
   &__badge {
     @include flex-center;
@@ -23,6 +28,13 @@
       min-width: 24px;
       width: 24px;
       height: 24px;
+
+      @include mobile {
+        font-size: 10px;
+        min-width: 20px;
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

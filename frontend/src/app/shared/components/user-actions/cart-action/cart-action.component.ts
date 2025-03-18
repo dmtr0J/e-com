@@ -13,7 +13,7 @@ import {CartDrawerComponent} from '../../cart-drawer/cart-drawer.component';
   styleUrl: './cart-action.component.scss'
 })
 export class CartActionComponent {
-  cartItemCount = signal(0);
+  cartItemCount = signal(10);
   isCartOpen = signal(false);
 
   get displayCount(): string {

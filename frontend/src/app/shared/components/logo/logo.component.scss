@@ -1,12 +1,14 @@
-.logo__link {
-  user-select: none;
+:host {
+  font-size: 24px;
 }
 
-.logo__text {
-  font-family: var(--font-family-heading);
-  color: var(--neutral-7-color);
+.logo {
+  &__link {
+    user-select: none;
+  }
 
-  //background: linear-gradient(45deg, var(--secondary-color), var(--secondary-alt-color));
-  //-webkit-background-clip: text;
-  //-webkit-text-fill-color: transparent;
+  &__text {
+    font-family: var(--font-family-heading);
+    color: var(--neutral-7-color);
+  }
 }

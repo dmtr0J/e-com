@@ -13,10 +13,40 @@
     width: 100%;
   }
 
+  &__logo-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+  }
+
+  &__burger-menu {
+    @include flex-center;
+
+    width: 24px;
+    height: 24px;
+  }
+
+  &__logo {
+    font-size: 24px;
+
+    @include tablet {
+      font-size: 20px;
+    }
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
   &__menu {
     &-list {
       display: flex;
       column-gap: 40px;
+
+      @include tablet {
+        font-size: 14px;
+        column-gap: 28px;
+      }
     }
 
     &-item {
@@ -57,10 +87,18 @@
 
     &-search {
       min-width: 24px;
+
+      &-link {
+        display: flex;
+      }
     }
 
     &-profile {
       min-width: 24px;
+
+      &-link {
+        display: flex;
+      }
     }
   }
 }

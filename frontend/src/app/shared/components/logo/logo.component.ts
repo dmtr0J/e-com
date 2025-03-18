@@ -1,14 +1,10 @@
-import {Component, Input} from '@angular/core';
-import {NgStyle} from '@angular/common';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-logo',
-  imports: [
-    NgStyle
-  ],
+  imports: [],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss'
 })
 export class LogoComponent {
-  @Input() fontSize: string = '24px';
 }
