@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {NgClass, NgOptimizedImage} from '@angular/common';
 import {ButtonComponent} from '../button/button.component';
 

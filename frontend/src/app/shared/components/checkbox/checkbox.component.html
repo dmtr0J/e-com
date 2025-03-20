@@ -1,0 +1,28 @@
+<label class="checkbox">
+  <ng-content select="[slot='left']"></ng-content>
+  <input
+    class="visually-hidden"
+    type="checkbox"
+    [checked]="checked"
+    (change)="toggleCheckbox()"
+  />
+  <div class="checkbox__indicator">
+    @if (checked) {
+      <div class="checkbox__indicator--checked">
+        <img
+          ngSrc="/assets/svgs/check.svg"
+          height="11"
+          width="14"
+          alt=""
+        />
+      </div>
+    } @else {
+      @if (!isValid && isTouched) {
+        <div class="checkbox__indicator--error"></div>
+      } @else {
+        <div class="checkbox__indicator--unchecked"></div>
+      }
+    }
+  </div>
+  <ng-content select="[slot='right']"></ng-content>
+</label>

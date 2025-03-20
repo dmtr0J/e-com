@@ -11,21 +11,20 @@ import {NgClass} from '@angular/common';
 })
 export class ButtonComponent {
   @Input() label: string = '';
-  @Input() type: 'primary' | 'rounded' | 'outlined' = 'primary';
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() style: 'primary' | 'rounded' | 'outlined' = 'primary';
   @Input() transparent: boolean = false;
-
-  @Output() onClick: EventEmitter<void> = new EventEmitter();
 
   get buttonClasses(): string[] {
     return [
       'button',
-      `button--${this.type}`,
-      this.transparent ? `button--${this.type}--transparent` : ''
+      `button--${this.style}`,
+      this.transparent ? `button--${this.style}--transparent` : ''
     ];
   }
 
   get spanClasses(): string {
-    if (this.type === 'outlined') {
+    if (this.style === 'outlined') {
       return this.transparent ? 'button--outlined--transparent' : 'button--outlined--text-underline';
     }
     return '';

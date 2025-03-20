@@ -1,5 +1,6 @@
 :host {
   font-size: 24px;
+  color: var(--neutral-7-color);
 }
 
 .logo {
@@ -9,6 +10,5 @@
 
   &__text {
     font-family: var(--font-family-heading);
-    color: var(--neutral-7-color);
   }
 }

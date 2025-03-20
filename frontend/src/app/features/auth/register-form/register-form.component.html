@@ -1,0 +1,86 @@
+<div class="register-form">
+  <div class="register-form__title-wrapper">
+    <h4 class="h4">Sign Up</h4>
+    <div class="register-form__prompt">
+        <span>
+          Already have an account? <a href="#" class="register-form__prompt-link">Sign In</a>
+        </span>
+    </div>
+  </div>
+  <form
+    class="register-form__form"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <app-input
+      class="register-form__form-input"
+      placeholder="First Name"
+      type="text"
+      formControlName="firstName"
+      controlName="firstName"
+      [form]="registerForm"
+    ></app-input>
+    <app-input
+      class="register-form__form-input"
+      placeholder="Middle Name"
+      type="text"
+      formControlName="middleName"
+      controlName="middleName"
+      [form]="registerForm"
+    ></app-input>
+    <app-input
+      class="register-form__form-input"
+      placeholder="Last Name"
+      type="text"
+      formControlName="lastName"
+      controlName="lastName"
+      [form]="registerForm"
+    ></app-input>
+    <app-input
+      class="register-form__form-input"
+      placeholder="Phone"
+      type="text"
+      formControlName="phone"
+      controlName="phone"
+      [form]="registerForm"
+    >
+      @if (registerForm.controls.phone.hasError('pattern')) {
+
+      }
+    </app-input>
+    <app-input
+      class="register-form__form-input"
+      placeholder="Email"
+      type="email"
+      formControlName="email"
+      controlName="email"
+      [form]="registerForm"
+    ></app-input>
+    <app-input
+      class="register-form__form-input"
+      placeholder="Password"
+      type="password"
+      formControlName="password"
+      controlName="password"
+      [form]="registerForm"
+    ></app-input>
+    <app-checkbox
+      formControlName="terms"
+      controlName="terms"
+      [form]="registerForm"
+    >
+      <span class="register-form__terms-text" slot="right">
+        I agree with
+        <a href="#" class="register-form__terms-link">Privacy Policy</a>
+        and
+        <a href="#" class="register-form__terms-link">Terms of Use</a>
+      </span>
+    </app-checkbox>
+    <app-button
+      class="register-form__button"
+      label="Sign Up"
+      type="submit"
+      (click)="markFormControlsAsTouched()"
+    ></app-button>
+  </form>
+</div>

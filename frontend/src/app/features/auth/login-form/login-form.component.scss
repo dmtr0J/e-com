@@ -1,0 +1,82 @@
+@use 'mixins' as *;
+@use 'media' as *;
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+
+  &__title-wrapper,
+  &__form {
+    width: 450px;
+
+    @include desktop {
+      max-width: 380px;
+    }
+
+    @include tablet {
+      max-width: 320px;
+    }
+
+    @include mobile {
+      max-width: 310px;
+    }
+  }
+
+  &__title-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+
+  &__prompt {
+    &-link {
+      color: var(--secondary-color);
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+
+    @include desktop {
+      row-gap: 28px;
+    }
+
+    &-input {
+      height: 50px;
+
+      @include desktop {
+        height: 40px;
+      }
+    }
+  }
+
+  &__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-text {
+      margin-left: 12px;
+    }
+
+    &-link{
+      color: var(--neutral-7-color);
+      font-weight: 600;
+
+      @include desktop {
+        font-size: 14px;
+      }
+
+      @include tablet {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__button {
+    height: var(--button-height-medium);
+  }
+}

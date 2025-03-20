@@ -1,20 +1,26 @@
 import { Routes } from '@angular/router';
-import {LoginComponent} from './features/auth/login/login.component';
-import {RegisterComponent} from './features/auth/register/register.component';
-import {HomeComponent} from './features/home/home.component';
-import {authGuard} from './core/guards/auth.guard';
-import {ProfileComponent} from './features/profile/profile.component';
+import {AuthComponent} from './features/auth/auth.component';
+import {LoginFormComponent} from './features/auth/login-form/login-form.component';
+import {RegisterFormComponent} from './features/auth/register-form/register-form.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '', component: HomeComponent },
   {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [authGuard],
-    data: {
-      roles: ['ADMIN']
-    }
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      { path: 'login', component: LoginFormComponent },
+      { path: 'register', component: RegisterFormComponent },
+    ]
   },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'register', component: RegisterComponent },
+  // { path: '', component: HomeComponent },
+  // {
+  //   path: 'profile',
+  //   component: ProfileComponent,
+  //   canActivate: [authGuard],
+  //   data: {
+  //     roles: ['ADMIN']
+  //   }
+  // },
 ];

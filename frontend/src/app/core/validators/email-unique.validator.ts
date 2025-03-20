@@ -1,7 +1,7 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
 import {catchError, debounceTime, first, map, Observable, of, switchMap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 export function validateUniqueEmail(http: HttpClient): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {

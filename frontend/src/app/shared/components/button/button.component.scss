@@ -1,12 +1,16 @@
 @use 'mixins' as *;
 @use 'media' as *;
 
-.button {
-  height: 100%;
-  width: 100%;
+:host {
+  display: block;
+}
 
+.button {
   @include reset-button;
   @include flex-center(true);
+
+  height: 100%;
+  width: 100%;
 
   &--primary,
   &--rounded {
@@ -14,8 +18,13 @@
     border: 1px solid var(--neutral-7-color);
     color: var(--neutral-1-color);
 
+    &:active {
+      transform: scale(0.98);
+    }
+
     @include hover {
       background-color: var(--neutral-5-color);
+
     }
   }
 

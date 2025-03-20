@@ -8,7 +8,7 @@
   column-gap: 5px;
 
   &__image {
-    min-width: 24px;
+    @include square(24px);
   }
 
   &__badge {

@@ -7,4 +7,5 @@ export interface RegisterForm {
   firstName: FormControl<string | null>;
   middleName: FormControl<string | null>;
   lastName: FormControl<string | null>;
+  terms: FormControl<boolean>;
 }

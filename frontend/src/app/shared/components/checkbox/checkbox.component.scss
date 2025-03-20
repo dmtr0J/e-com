@@ -1,0 +1,51 @@
+@use 'mixins' as *;
+@use 'media' as *;
+
+:host {
+  display: block;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+
+  &__indicator {
+    @include square(24px);
+
+    min-height: 24px;
+    min-width: 24px;
+    border-radius: 4px;
+
+    &--unchecked,
+    &--checked,
+    &--error {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    &--unchecked {
+      border: 1.5px solid var(--neutral-4-color);
+      transition-duration: var(--transition-duration);
+
+      @include hover {
+        background-color: var(--neutral-2-color);
+      }
+    }
+
+    &--checked {
+      @include flex-center;
+
+      background-color: var(--neutral-7-color);
+      user-select: none;
+    }
+
+    &--error {
+      border: 1.5px solid var(--red-color);
+      transition-duration: var(--transition-duration);
+
+      @include hover {
+        background-color: var(--neutral-2-color);
+      }
+    }
+  }
+}

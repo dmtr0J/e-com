@@ -86,7 +86,7 @@
     column-gap: 16px;
 
     &-search {
-      min-width: 24px;
+      @include square(24px);
 
       &-link {
         display: flex;
@@ -94,7 +94,7 @@
     }
 
     &-profile {
-      min-width: 24px;
+      @include square(24px);
 
       &-link {
         display: flex;
