@@ -3,7 +3,7 @@
     <h4 class="h4">Sign Up</h4>
     <div class="register-form__prompt">
         <span>
-          Already have an account? <a href="#" class="register-form__prompt-link">Sign In</a>
+          Already have an account? <a href="auth/login" class="register-form__prompt-link">Sign In</a>
         </span>
     </div>
   </div>
@@ -45,7 +45,7 @@
       [form]="registerForm"
     >
       @if (registerForm.controls.phone.hasError('pattern')) {
-
+        <span slot="error">Phone should be valid</span>
       }
     </app-input>
     <app-input
@@ -55,7 +55,15 @@
       formControlName="email"
       controlName="email"
       [form]="registerForm"
-    ></app-input>
+    >
+      @if (registerForm.controls.email.hasError('required')) {
+        <span slot="error">Email is required</span>
+      } @else if (registerForm.controls.email.hasError('email')) {
+        <span slot="error">Email should be valid</span>
+      } @else if (registerForm.controls.email.hasError('emailTaken')) {
+        <span slot="error">Email is already taken</span>
+      }
+    </app-input>
     <app-input
       class="register-form__form-input"
       placeholder="Password"
@@ -63,7 +71,13 @@
       formControlName="password"
       controlName="password"
       [form]="registerForm"
-    ></app-input>
+    >
+      @if (registerForm.controls.password.hasError('required')) {
+        <span slot="error">Password is required</span>
+      } @else if (registerForm.controls.password.hasError('minlength')) {
+        <span slot="error">Password should be at least 6 character</span>
+      }
+    </app-input>
     <app-checkbox
       formControlName="terms"
       controlName="terms"

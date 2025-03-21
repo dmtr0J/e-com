@@ -1,8 +1,8 @@
 import {Directive, inject, TemplateRef} from '@angular/core';
 
 @Directive({
-  selector: '[appInputSuffixTemplate]'
+  selector: '[appTemplateCapture]'
 })
-export class InputSuffixTemplateDirective {
+export class TemplateCaptureDirective {
   template: TemplateRef<any> = inject(TemplateRef);
 }

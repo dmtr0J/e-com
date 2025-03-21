@@ -44,12 +44,10 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      // this.authService.loginWithEmail(this.loginForm.getRawValue())
-      //   .subscribe(
-      //     // () => this.router.navigate([''])
-      //
-      //   );
-      console.log(this.loginForm.getRawValue());
+      this.authService.loginWithEmail(this.loginForm.getRawValue())
+        .subscribe(
+          // () => this.router.navigate([''])
+        );
     }
   }
 

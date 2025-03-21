@@ -1,20 +1,20 @@
 import {
   Component,
-  contentChild, forwardRef, inject,
-  Input, Optional, Self, signal,
+  contentChild,
+  forwardRef,
+  Input,
+  signal,
   TemplateRef,
   ViewChild, WritableSignal
 } from '@angular/core';
 import {NgOptimizedImage, NgTemplateOutlet} from '@angular/common';
-import {InputSuffixTemplateDirective} from '../../../core/directives/input-suffix-template/input-suffix-template.directive';
-import {InputPrefixTemplateDirective} from '../../../core/directives/input-prefix-template/input-prefix-template.directive';
+import {InputSuffixDirective} from '../../../core/directives/input-suffix/input-suffix.directive';
+import {InputPrefixDirective} from '../../../core/directives/input-prefix/input-prefix.directive';
 import {
-  AbstractControl,
-  ControlValueAccessor, FormControl, FormGroup, FormsModule,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR, NgControl,
-  ValidationErrors,
-  Validator
+  ControlValueAccessor,
+  FormGroup,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
 @Component({
@@ -35,15 +35,23 @@ import {
   ]
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() type: 'text' | 'email' | 'password' = 'text';
-  @Input() placeholder: string = '';
-  @Input({ required : true }) form!: FormGroup;
-  @Input({ required : true }) controlName!: string;
+  @Input()
+  type: 'text' | 'email' | 'password' = 'text';
 
-  @ViewChild('passwordSuffix') passwordSuffixTemplate!: TemplateRef<any>;
+  @Input()
+  placeholder: string = '';
 
-  prefixTemplate = contentChild(InputPrefixTemplateDirective);
-  suffixTemplate = contentChild(InputSuffixTemplateDirective);
+  @Input({ required : true })
+  form!: FormGroup;
+
+  @Input({ required : true })
+  controlName!: string;
+
+  @ViewChild('passwordSuffix')
+  passwordSuffixTemplate!: TemplateRef<any>;
+
+  prefixTemplate = contentChild(InputPrefixDirective);
+  suffixTemplate = contentChild(InputSuffixDirective);
 
   isPasswordHidden: WritableSignal<boolean> = signal<boolean>(true);
 

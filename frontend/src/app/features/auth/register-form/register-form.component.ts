@@ -7,6 +7,10 @@ import {AuthService} from '../../../core/services/auth/auth.service';
 import {RegisterForm} from './models/register-form.interface';
 import {validateUniqueEmail} from '../../../core/validators/email-unique.validator';
 import {HttpClient} from '@angular/common/http';
+import {
+  InputPrefixDirective
+} from '../../../core/directives/input-prefix/input-prefix.directive';
+import {InputSuffixDirective} from '../../../core/directives/input-suffix/input-suffix.directive';
 
 @Component({
   selector: 'app-register-form',
@@ -15,7 +19,7 @@ import {HttpClient} from '@angular/common/http';
     CheckboxComponent,
     FormsModule,
     InputComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss'
@@ -43,8 +47,8 @@ export class RegisterFormComponent implements OnInit {
       middleName: this.fb.control(null),
       lastName: this.fb.control(null),
       terms: this.fb.nonNullable.control(false, {
-        validators: [Validators.required]
-      }),
+        validators: Validators.requiredTrue
+      })
     });
   }
 
@@ -54,10 +58,10 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      // this.authService.register(this.registerForm.getRawValue())
-      //   .subscribe();
+      this.authService.register(this.registerForm.getRawValue())
+        .subscribe();
     }
-    console.log(this.registerForm.getRawValue());
+
   }
 
 }

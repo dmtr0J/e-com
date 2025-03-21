@@ -1,6 +1,7 @@
-import {Component, forwardRef, Host, inject, Input, Optional} from '@angular/core';
+import {Component, forwardRef, Host, inject, Input, OnInit, Optional} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
-import {ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, NgControl, Validators} from '@angular/forms';
+import {delay} from 'rxjs';
 
 @Component({
   selector: 'app-checkbox',
@@ -25,8 +26,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   onChange: (value: boolean) => void = () => {};
   onTouched: () => void = () => {};
 
-  isTouched: boolean = false;
-
   get formControl() {
     return this.form.get(this.controlName);
   }
@@ -37,7 +36,6 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   toggleCheckbox(): void {
     this.checked = !this.checked;
-    this.isTouched = true;
     this.onChange(this.checked);
     this.onTouched();
   }

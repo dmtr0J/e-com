@@ -17,7 +17,7 @@
         />
       </div>
     } @else {
-      @if (!isValid && isTouched) {
+      @if (!isValid && formControl?.touched) {
         <div class="checkbox__indicator--error"></div>
       } @else {
         <div class="checkbox__indicator--unchecked"></div>
