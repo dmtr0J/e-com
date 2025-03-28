@@ -15,7 +15,7 @@ export class ButtonComponent {
   @Input() style: 'primary' | 'rounded' | 'outlined' = 'primary';
   @Input() transparent: boolean = false;
 
-  get buttonClasses(): string[] {
+  get buttonStyle(): string[] {
     return [
       'button',
       `button--${this.style}`,
@@ -23,7 +23,7 @@ export class ButtonComponent {
     ];
   }
 
-  get spanClasses(): string {
+  get buttonTextStyle(): string {
     if (this.style === 'outlined') {
       return this.transparent ? 'button--outlined--transparent' : 'button--outlined--text-underline';
     }

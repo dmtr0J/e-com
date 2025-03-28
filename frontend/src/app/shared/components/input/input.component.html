@@ -1,27 +1,27 @@
 <div class="input-field">
-  <div class="input-field__inner">
-    <div class="input-field__prefix">
-      <ng-container [ngTemplateOutlet]="prefixTemplate()?.template || getPrefixTemplate() || emptyTemplate"/>
-    </div>
-    <input
-      class="input-field__control"
-      [placeholder]="placeholder"
-      [type]="type"
-      [value]="value"
-      (input)="onInputChange($event)"
-      (blur)="onBlur()"
-    />
-    <div class="input-field__suffix">
-      <ng-container [ngTemplateOutlet]="suffixTemplate()?.template || getSuffixTemplate() || emptyTemplate"/>
-    </div>
+  <div class="input-field__prefix">
+    <ng-container [ngTemplateOutlet]="prefixTemplate()?.template || getPrefixTemplate() || emptyTemplate"/>
   </div>
-  @if (showError) {
-    <div class="input-field__error">
-      <ng-content select="[slot='error']"></ng-content>
-    </div>
-  }
+
+  <input
+    class="input-field__control"
+    [placeholder]="placeholder"
+    [type]="type"
+    [value]="value"
+    (input)="onInputChange($event)"
+    (blur)="onBlur()"
+  />
+
+  <div class="input-field__suffix">
+    <ng-container [ngTemplateOutlet]="suffixTemplate()?.template || getSuffixTemplate() || emptyTemplate"/>
+  </div>
 </div>
 
+@if (showError) {
+  <div class="input-field__error">
+    <ng-content select="[slot='error']"></ng-content>
+  </div>
+}
 
 <ng-template #emptyTemplate/>
 
@@ -30,15 +30,15 @@
     @if (isPasswordHidden()) {
       <img
         ngSrc="/assets/svgs/visibility_of.svg"
-        height="24"
         width="24"
+        height="24"
         alt=""
       />
     } @else {
       <img
         ngSrc="/assets/svgs/visibility.svg"
-        height="24"
         width="24"
+        height="24"
         alt=""
       />
     }

@@ -1,12 +1,14 @@
 <div class="register-form">
   <div class="register-form__title-wrapper">
     <h4 class="h4">Sign Up</h4>
+
     <div class="register-form__prompt">
         <span>
           Already have an account? <a href="auth/login" class="register-form__prompt-link">Sign In</a>
         </span>
     </div>
   </div>
+
   <form
     class="register-form__form"
     [formGroup]="registerForm"
@@ -20,6 +22,7 @@
       controlName="firstName"
       [form]="registerForm"
     ></app-input>
+
     <app-input
       class="register-form__form-input"
       placeholder="Middle Name"
@@ -28,6 +31,7 @@
       controlName="middleName"
       [form]="registerForm"
     ></app-input>
+
     <app-input
       class="register-form__form-input"
       placeholder="Last Name"
@@ -36,6 +40,7 @@
       controlName="lastName"
       [form]="registerForm"
     ></app-input>
+
     <app-input
       class="register-form__form-input"
       placeholder="Phone"
@@ -48,6 +53,7 @@
         <span slot="error">Phone should be valid</span>
       }
     </app-input>
+
     <app-input
       class="register-form__form-input"
       placeholder="Email"
@@ -64,6 +70,7 @@
         <span slot="error">Email is already taken</span>
       }
     </app-input>
+
     <app-input
       class="register-form__form-input"
       placeholder="Password"
@@ -78,6 +85,7 @@
         <span slot="error">Password should be at least 6 character</span>
       }
     </app-input>
+
     <app-checkbox
       formControlName="terms"
       controlName="terms"
@@ -90,11 +98,13 @@
         <a href="#" class="register-form__terms-link">Terms of Use</a>
       </span>
     </app-checkbox>
+
     <app-button
       class="register-form__button"
-      label="Sign Up"
       type="submit"
       (click)="markFormControlsAsTouched()"
-    ></app-button>
+    >
+      Sign Up
+    </app-button>
   </form>
 </div>

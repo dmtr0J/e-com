@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 import {AuthComponent} from './features/auth/auth.component';
 import {LoginFormComponent} from './features/auth/login-form/login-form.component';
 import {RegisterFormComponent} from './features/auth/register-form/register-form.component';
+import {HomeComponent} from './features/home/home.component';
+import {ShopComponent} from './features/shop/shop.component';
+import {ProductCardComponent} from './shared/components/product/product-card/product-card.component';
+import {ProductListComponent} from './shared/components/product/product-list/product-list.component';
+import {DropdownComponent} from './shared/components/dropdown/dropdown.component';
 
 export const routes: Routes = [
   {
@@ -12,15 +17,8 @@ export const routes: Routes = [
       { path: 'register', component: RegisterFormComponent },
     ]
   },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'register', component: RegisterComponent },
-  // { path: '', component: HomeComponent },
-  // {
-  //   path: 'profile',
-  //   component: ProfileComponent,
-  //   canActivate: [authGuard],
-  //   data: {
-  //     roles: ['ADMIN']
-  //   }
-  // },
+  { path: '', component: HomeComponent },
+  { path: 'shop', component: ShopComponent },
+  { path: 'productList', component: ProductListComponent },
+  { path: 'dropdown', component: DropdownComponent },
 ];

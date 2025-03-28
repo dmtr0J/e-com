@@ -1,0 +1,28 @@
+<div class="dropdown">
+  <div class="dropdown__selected" (click)="toggleDropdown()">
+    <span class="dropdown__selected-text">
+      {{ selectedValue() || 'Select an option' }}
+    </span>
+
+    <img
+      class="dropdown__image"
+      ngSrc="/assets/svgs/dropdown-arrow.svg"
+      width="10"
+      height="6"
+      alt=""
+    />
+  </div>
+
+  <ul class="dropdown__list" [class.dropdown__list--open]="isOpen()">
+    @if (options.length === 0) {
+      <li class="dropdown__empty-message">
+        {{ emptyMessage }}
+      </li>
+    }
+    @for (option of options; track option) {
+      <li class="dropdown__list-item" (click)="selectOption(option)">
+        {{ option }}
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,51 @@
+@use 'mixins' as *;
+
+.product-filter {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+  }
+
+  &__image {
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--neutral-7-color);
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+
+    &-title {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 26px;
+      color: var(--neutral-7-color);
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+    }
+  }
+
+  &__category-button {
+    width: 100%;
+    height: auto;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+}

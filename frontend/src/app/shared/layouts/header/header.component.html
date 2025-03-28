@@ -1,59 +1,63 @@
-<header class="header">
-  <div class="header__inner container">
+<header class="header container">
     <div class="header__logo-wrapper">
       <div class="header__burger-menu burger-button visible-mobile">
         <img
           ngSrc="/assets/svgs/burger-menu.svg"
-          height="8"
           width="10"
+          height="8"
           loading="lazy"
           alt="menu"
-        >
+        />
+
         <span class="visually-hidden">Open navigation menu</span>
       </div>
 
       <app-logo class="header__logo">Impressia.</app-logo>
     </div>
+
     <nav class="header__menu hidden-mobile">
       <ul class="header__menu-list">
         <li class="header__menu-item header__menu-item--active">
           <a class="header__menu-link" href="/">Home</a>
         </li>
+
         <li class="header__menu-item">
-          <a class="header__menu-link" href="/">Shop</a>
+          <a class="header__menu-link" href="/shop">Shop</a>
         </li>
+
         <li class="header__menu-item">
-          <a class="header__menu-link" href="/">Product</a>
+          <a class="header__menu-link" href="#">Product</a>
         </li>
+
         <li class="header__menu-item">
-          <a class="header__menu-link" href="/">Contact Us</a>
+          <a class="header__menu-link" href="#">Contact Us</a>
         </li>
       </ul>
     </nav>
+
     <div class="header__action">
       <div class="header__action-search hidden-mobile">
         <a class="header__action-search-link" href="#">
           <img
             ngSrc="/assets/svgs/search.svg"
-            height="24"
             width="24"
-            loading="lazy"
+            height="24"
             alt="search"
-          >
+          />
         </a>
       </div>
+
       <div class="header__action-profile hidden-mobile">
         <a class="header__action-profile-link" href="#">
           <img
             ngSrc="/assets/svgs/profile.svg"
-            height="24"
             width="24"
-            loading="lazy"
+            height="24"
             alt="profile"
           />
         </a>
       </div>
+
       <app-cart-action/>
     </div>
-  </div>
 </header>

@@ -45,8 +45,8 @@
     @include reset-button;
     @include flex-center;
 
-    height: 24px;
     width: 24px;
+    height: 24px;
   }
 
   &__content {}
@@ -80,8 +80,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
       height: 1px;
+      width: 100%;
       background-color: var(--neutral-3-color);
     }
 
@@ -101,8 +101,8 @@
   &__button {
     &-checkout {
       font-size: var(--button-font-size-m);
-      height: 52px;
       width: 100%;
+      height: 52px;
     }
 
     &-cart {

@@ -1,0 +1,30 @@
+<section class="product-filter">
+  <div class="product-filter__title-wrapper">
+    <img
+      class="product-filter__image"
+      ngSrc="/assets/svgs/filter.svg"
+      width="18"
+      height="16"
+      alt=""
+    />
+
+    <span class="product-filter__title">Filter</span>
+  </div>
+
+  <div class="product-filter__group">
+    <span class="product-filter__group-title">CATEGORIES</span>
+
+    <div class="product-filter__group-content" appScrollbar>
+      @for (category of rootCategories; track category.id) {
+        <app-button
+          class="product-filter__category-button"
+          [style]="'outlined'"
+          [transparent]="selectedCategory != category"
+          (click)="selectCategory(category)"
+        >
+          {{ category.name }}
+        </app-button>
+      }
+    </div>
+  </div>
+</section>

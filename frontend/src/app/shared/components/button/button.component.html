@@ -1,6 +1,8 @@
 <button
-  [ngClass]="buttonClasses"
+  [ngClass]="buttonStyle"
   [type]="type"
 >
-  <span [ngClass]="spanClasses">{{ label }}</span>
+  <div [ngClass]="buttonTextStyle">
+    <ng-content></ng-content>
+  </div>
 </button>

@@ -1,12 +1,14 @@
 <div class="login-form">
   <div class="login-form__title-wrapper">
     <h4 class="h4">Sign In</h4>
+
     <div class="login-form__prompt">
         <span>
           Don’t have an account yet?  <a href="auth/register" class="login-form__prompt-link">Sign Up</a>
         </span>
     </div>
   </div>
+
   <form
     class="login-form__form"
     [formGroup]="loginForm"
@@ -26,6 +28,7 @@
         <span slot="error">Email should be valid</span>
       }
     </app-input>
+
     <app-input
       class="login-form__form-input"
       placeholder="Password"
@@ -40,6 +43,7 @@
         <span slot="error">Password should be at least 6 character</span>
       }
     </app-input>
+
     <div class="login-form__options">
       <app-checkbox
         formControlName="rememberMe"
@@ -50,11 +54,13 @@
       </app-checkbox>
       <a href="#" class="login-form__options-link">Forgot password?</a>
     </div>
+
     <app-button
       class="login-form__button"
       type='submit'
-      label="Sign In"
       (click)="markFormControlsAsTouched()"
-    ></app-button>
+    >
+      Sign In
+    </app-button>
   </form>
 </div>
