@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class ProductConverter extends BaseConverter<Product, ProductRequest, ProductResponse> {
+public class ProductConverter implements Converter<Product, ProductRequest, ProductResponse> {
     private final CategoryService categoryService;
 
     @Override

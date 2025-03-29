@@ -20,4 +20,8 @@ public class ApiConstants {
 
     // product
     public static final String PRODUCT_PATH = API + "/product";
+
+    // category
+    public static final String CATEGORY_PATH = API + "/category";
+
 }

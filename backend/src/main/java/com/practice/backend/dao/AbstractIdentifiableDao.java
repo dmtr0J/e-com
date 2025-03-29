@@ -14,7 +14,6 @@ public abstract class AbstractIdentifiableDao<EntityType extends Identifiable> e
     public Optional<EntityType> getOneById(Long id) {
         Specification<EntityType> specification = new IdSpecification<>(id);
         return getRepository().findOne(specification);
-
     }
 
 }

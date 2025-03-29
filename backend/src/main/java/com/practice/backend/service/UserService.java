@@ -4,6 +4,7 @@ import com.practice.backend.dao.AbstractIdentifiableDao;
 import com.practice.backend.dao.UserDao;
 import com.practice.backend.dao.exception.EntityNotFoundException;
 import com.practice.backend.model.entity.User;
+import com.practice.backend.model.entity.User_;
 import com.practice.backend.model.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,13 +29,16 @@ public class UserService extends AbstractService<User> {
     }
 
     public User getOneByEmail(String email) {
-        User user = getDao().getOneByField("email", email);
+        User user = getDao().getOneByField(User_.EMAIL, email);
 
         if (user == null) {
-            throw new EntityNotFoundException("User not found with: " + email);
+            throw new EntityNotFoundException("User not found with email: " + email);
         }
 
         return user;
+    }
 
+    public boolean existsByEmail(String email) {
+        return this.dao.existsByEmail(email);
     }
 }

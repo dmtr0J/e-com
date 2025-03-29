@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class UserConverter extends BaseConverter<User, UserRequest, UserResponse>{
+public class UserConverter implements Converter<User, UserRequest, UserResponse> {
 
     @Override
     public User requestToEntity(UserRequest userRequest) {

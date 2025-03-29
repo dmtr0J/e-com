@@ -3,7 +3,7 @@ package com.practice.backend.api.v1.controller;
 import com.practice.backend.api.v1.ApiConstants;
 import com.practice.backend.api.v1.controller.common.AbstractControllerTest;
 import com.practice.backend.builder.UserBuilder;
-import com.practice.backend.converter.BaseConverter;
+import com.practice.backend.converter.Converter;
 import com.practice.backend.converter.UserConverter;
 import com.practice.backend.dto.UserRequest;
 import com.practice.backend.dto.UserResponse;
@@ -55,7 +55,7 @@ public class UserControllerTest extends AbstractControllerTest<
     }
 
     @Override
-    protected BaseConverter<User, UserRequest, UserResponse> getConverter() {
+    protected Converter<User, UserRequest, UserResponse> getConverter() {
         return this.userConverter;
     }
 

@@ -22,6 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static com.practice.backend.api.v1.ApiConstants.API;
 import static com.practice.backend.api.v1.ApiConstants.AUTH_PATH;
+import static com.practice.backend.api.v1.ApiConstants.CATEGORY_PATH;
 import static com.practice.backend.api.v1.ApiConstants.LOGIN_PATH;
 import static com.practice.backend.api.v1.ApiConstants.LOGOUT_PATH;
 import static com.practice.backend.api.v1.ApiConstants.MATCH_ALL_PATHS;
@@ -46,21 +47,21 @@ public class SecurityConfiguration {
                 .securityMatcher(API + MATCH_ALL_PATHS)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
-                                AUTH_PATH + REGISTER_PATH,
-                                AUTH_PATH + LOGIN_PATH,
-                                AUTH_PATH + REFRESH_TOKEN_PATH
+//                                AUTH_PATH + REGISTER_PATH,
+//                                AUTH_PATH + LOGIN_PATH,
+//                                AUTH_PATH + REFRESH_TOKEN_PATH
+                                AUTH_PATH + MATCH_ALL_PATHS,
+                                USER_PATH + "/exist",
+                                CATEGORY_PATH + MATCH_ALL_PATHS
                         )
                         .permitAll()
+//                        .requestMatchers(
+//
+//                        )
+//                        .hasAuthority(Role.ADMIN.name())
                         .requestMatchers(
-                                HttpMethod.PATCH, USER_PATH
-                        )
-                        .hasAuthority(Role.USER.name())
-                        .requestMatchers(
-                                USER_PATH + MATCH_ALL_PATHS
-                        )
-                        .hasAuthority(Role.ADMIN.name())
-                        .requestMatchers(
-                                AUTH_PATH + LOGOUT_PATH,
+                                //AUTH_PATH + LOGOUT_PATH,
+                                USER_PATH + MATCH_ALL_PATHS,
                                 PRODUCT_PATH + MATCH_ALL_PATHS
                         )
                         .hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())

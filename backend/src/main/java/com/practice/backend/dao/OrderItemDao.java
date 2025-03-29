@@ -13,5 +13,7 @@ public class OrderItemDao extends AbstractIdentifiableDao<OrderItem> {
     private final OrderItemRepository orderItemRepository;
 
     @Override
-    protected BaseIdentifiableRepository<OrderItem> getRepository() {return this.orderItemRepository; }
+    protected BaseIdentifiableRepository<OrderItem> getRepository() {
+        return this.orderItemRepository;
+    }
 }

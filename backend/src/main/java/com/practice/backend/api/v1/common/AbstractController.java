@@ -1,6 +1,6 @@
 package com.practice.backend.api.v1.common;
 
-import com.practice.backend.converter.BaseConverter;
+import com.practice.backend.converter.Converter;
 import com.practice.backend.filtering.common.FilterableProperty;
 import com.practice.backend.filtering.common.FilteringOperation;
 import com.practice.backend.filtering.exception.IllegalFilteringOperationException;
@@ -64,7 +64,7 @@ public abstract class AbstractController<
 
     public abstract AbstractService<EntityType> getService();
 
-    public abstract BaseConverter<EntityType, ApiRequestType, ApiResponseType> getConverter();
+    public abstract Converter<EntityType, ApiRequestType, ApiResponseType> getConverter();
 
     public abstract ApiResponseType convertEntityToResponse(EntityType entity, List<String> entitiesToExpand);
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class UserSpecificationBuilder implements EntityFilterSpecificationBuilder<User> {
 
-    public static final List<FilterableProperty<User>> FILTERABLE_PROPERTIES = List.of(
+    private static final List<FilterableProperty<User>> FILTERABLE_PROPERTIES = List.of(
             new FilterableProperty<>(User_.EMAIL, String.class,
                     StringComparisonSpecificationBuilder.SUPPORTED_OPERATORS,
                     new StringComparisonSpecificationBuilder<>()),

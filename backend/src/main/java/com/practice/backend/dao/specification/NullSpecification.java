@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 @AllArgsConstructor
 public class NullSpecification<T extends Identifiable> implements Specification<T> {
+
     private final String fieldPath;
 
     @Override

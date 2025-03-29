@@ -2,7 +2,7 @@ package com.practice.backend.api.v1.controller;
 
 import com.practice.backend.api.v1.common.AbstractController;
 import com.practice.backend.api.v1.exception.PatchFieldConstraintViolationException;
-import com.practice.backend.converter.BaseConverter;
+import com.practice.backend.converter.Converter;
 import com.practice.backend.converter.ProductConverter;
 import com.practice.backend.dto.ProductRequest;
 import com.practice.backend.dto.ProductResponse;
@@ -64,7 +64,7 @@ public class ProductController extends AbstractController<Product, ProductReques
     }
 
     @Override
-    public BaseConverter<Product, ProductRequest, ProductResponse> getConverter() {
+    public Converter<Product, ProductRequest, ProductResponse> getConverter() {
         return this.converter;
     }
 

@@ -4,7 +4,6 @@ import com.practice.backend.filtering.specification.EntityFilterSpecificationBui
 
 public interface FilterableController<T> {
 
-    default EntityFilterSpecificationBuilder<T> getFilterSpecificationsBuilder() {
-        return null;
-    }
+    EntityFilterSpecificationBuilder<T> getFilterSpecificationsBuilder();
+
 }

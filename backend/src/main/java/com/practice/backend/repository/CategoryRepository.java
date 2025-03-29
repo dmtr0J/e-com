@@ -7,6 +7,4 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends BaseIdentifiableRepository<Category> {
-
-    Optional<Category> findOneByName(String name);
 }

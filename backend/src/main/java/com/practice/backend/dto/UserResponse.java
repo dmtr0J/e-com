@@ -16,20 +16,13 @@ import java.util.List;
 public class UserResponse implements ApiResponse {
 
     private Long id;
-
     private String email;
-
     private Role role;
-
     private String phone;
-
     private String firstName;
-
     private String middleName;
-
     private String lastName;
-
     private LocalDate birthDate;
-
     private List<Order> orders;
+
 }

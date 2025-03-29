@@ -13,5 +13,7 @@ public class AddressDao extends AbstractIdentifiableDao<Address> {
     private final AddressRepository addressRepository;
 
     @Override
-    protected BaseIdentifiableRepository<Address> getRepository() {return this.addressRepository; }
+    protected BaseIdentifiableRepository<Address> getRepository() {
+        return this.addressRepository;
+    }
 }

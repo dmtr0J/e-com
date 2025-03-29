@@ -2,7 +2,7 @@ package com.practice.backend.api.v1.controller;
 
 import com.practice.backend.api.v1.ApiConstants;
 import com.practice.backend.api.v1.common.AbstractController;
-import com.practice.backend.converter.BaseConverter;
+import com.practice.backend.converter.Converter;
 import com.practice.backend.converter.UserConverter;
 import com.practice.backend.dto.UserRequest;
 import com.practice.backend.dto.UserResponse;
@@ -12,7 +12,9 @@ import com.practice.backend.model.entity.User;
 import com.practice.backend.service.AbstractService;
 import com.practice.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,7 +34,7 @@ public class UserController extends AbstractController<User, UserRequest, UserRe
     }
 
     @Override
-    public BaseConverter<User, UserRequest, UserResponse> getConverter() {
+    public Converter<User, UserRequest, UserResponse> getConverter() {
         return this.userConverter;
     }
 
@@ -69,4 +71,9 @@ public class UserController extends AbstractController<User, UserRequest, UserRe
 //    protected void patchFields(User user, Map<String, Object> fieldsToPatch) {
 //
 //    }
+
+    @GetMapping("/exist")
+    public boolean existsByEmail(@RequestParam /*@Email @NotBlank*/ String email) {
+        return this.userService.existsByEmail(email);
+    }
 }

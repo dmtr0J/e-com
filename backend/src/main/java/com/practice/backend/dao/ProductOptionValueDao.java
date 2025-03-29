@@ -13,5 +13,7 @@ public class ProductOptionValueDao extends AbstractIdentifiableDao<ProductOption
     private final ProductOptionValueRepository productOptionValueRepository;
 
     @Override
-    protected BaseIdentifiableRepository<ProductOptionValue> getRepository() {return this.productOptionValueRepository;}
+    protected BaseIdentifiableRepository<ProductOptionValue> getRepository() {
+        return this.productOptionValueRepository;
+    }
 }

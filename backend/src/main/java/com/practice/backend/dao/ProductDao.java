@@ -13,5 +13,7 @@ public class ProductDao extends AbstractIdentifiableDao<Product> {
     private final ProductRepository productRepository;
 
     @Override
-    protected BaseIdentifiableRepository<Product> getRepository() {return this.productRepository;}
+    protected BaseIdentifiableRepository<Product> getRepository() {
+        return this.productRepository;
+    }
 }
