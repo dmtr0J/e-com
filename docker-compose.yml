@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:17.4
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: e_commerce
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - internalnet
+
+  backend:
+    build: ./backend
+    container_name: spring-backend
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/e_commerce
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - internalnet
+
+  frontend:
+    build: ./frontend
+    container_name: angular-frontend
+    ports:
+      - "80:80"
+    networks:
+      - internalnet
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/default.conf
+    depends_on:
+      - backend
+    networks:
+      - internalnet
+
+volumes:
+  pgdata:
+
+networks:
+  internalnet:
+    driver: bridge
