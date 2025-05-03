@@ -8,31 +8,35 @@ import {
   Router,
   RouterStateSnapshot
 } from '@angular/router';
-import {STORAGE_KEY} from '../util/storage-keys';
-import {User} from '../models/user.interface';
+import {jwtDecode} from 'jwt-decode';
+import {JwtPayload} from '../models/jwt-payload.interface';
 
 export const authGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  route: ActivatedRouteSnapshot
 ): MaybeAsync<GuardResult> => {
   const router: Router = inject(Router);
-  return checkAuth(route) ? true : router.navigate(['/login']);
+  return checkAuth(route) ? true : router.navigate(['/auth/login']);
 }
 
 const checkAuth = (route: ActivatedRouteSnapshot): boolean => {
   const authService: AuthService = inject(AuthService);
-  //const requiredRoles: string[] = route.data['roles'];
-  //const profileJson: string | null = localStorage.getItem(STORAGE_KEY.PROFILE);
+  const requiredRoles: string[] = route.data['roles'];
+  const accessToken: string | null = authService.tokens.accessToken;
 
   if (authService.isAuthenticated) {
-    /*if (!profileJson) {
+    if (accessToken) {
+      const role: string | undefined = getRoleFromAccessToken(accessToken);
+      return role ? requiredRoles.includes(role) : false;
+    } else {
       return false;
-    }*/
-    //return requiredRoles.includes(JSON.parse(profileJson).role);
-    return true;
+    }
   } else {
     return false;
   }
+}
+
+const getRoleFromAccessToken = (accessToken: string) => {
+  return jwtDecode<JwtPayload>(accessToken).role;
 }
 
 

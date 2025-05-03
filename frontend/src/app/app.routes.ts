@@ -7,6 +7,8 @@ import {ShopComponent} from './features/shop/shop.component';
 import {ProductCardComponent} from './shared/components/product/product-card/product-card.component';
 import {ProductListComponent} from './shared/components/product/product-list/product-list.component';
 import {DropdownComponent} from './shared/components/dropdown/dropdown.component';
+import {ProfileComponent} from './features/profile/profile.component';
+import {authGuard} from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -19,6 +21,12 @@ export const routes: Routes = [
   },
   { path: '', component: HomeComponent },
   { path: 'shop', component: ShopComponent },
-  { path: 'productList', component: ProductListComponent },
-  { path: 'dropdown', component: DropdownComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    data: {
+      roles: ['USER', 'ADMIN']
+    },
+    canActivate: [authGuard]
+  },
 ];

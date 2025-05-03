@@ -1,7 +1,35 @@
 <main class="product-list container">
   <app-product-filter></app-product-filter>
 
-  <div class="product-list__content">
+  <div class="product-list__inner">
+    <div class="product-list__header">
+      <span class="product-list__title">Business Printing</span>
 
+      <div class="product-list__controls">
+        <div class="product-list__sort">Sort by</div>
+
+        <div class="product-list__view-toggle">View toggle</div>
+      </div>
+    </div>
+
+    <div class="product-list__grid">
+      @for (product of products; track product.id) {
+        <app-product-card
+          class="product-list__card"
+          [title]=product.name
+          [price]=product.price
+        ></app-product-card>
+      }
+    </div>
+
+    <div class="product-list__pagination">
+      <app-button
+        class="product-list__show-more-button"
+        [style]="'rounded'"
+        [transparent]="true"
+      >
+        Show more
+      </app-button>
+    </div>
   </div>
 </main>

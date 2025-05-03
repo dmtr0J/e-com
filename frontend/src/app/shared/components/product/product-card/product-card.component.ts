@@ -21,9 +21,8 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent implements AfterViewInit {
-
   @Input() title: string = 'title';
-  @Input() price: string = '$199.00';
+  @Input() price: number = 199.00;
   @Input() description: string = 'description';
 
   @ViewChild('imageContainer') imageContainer!: ElementRef;

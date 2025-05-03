@@ -46,7 +46,7 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.loginWithEmail(this.loginForm.getRawValue())
         .subscribe(
-          // () => this.router.navigate([''])
+          () => this.router.navigate([''])
         );
     }
   }
