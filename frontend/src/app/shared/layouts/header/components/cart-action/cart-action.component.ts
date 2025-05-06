@@ -1,6 +1,6 @@
 import {Component, signal, WritableSignal} from '@angular/core';
 import {NgClass, NgOptimizedImage} from '@angular/common';
-import {CartDrawerComponent} from '../../cart-drawer/cart-drawer.component';
+import {CartDrawerComponent} from '../cart-drawer/cart-drawer.component';
 
 @Component({
   selector: 'app-cart-action',

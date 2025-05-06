@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+}
+
+.admin-panel {
+  &__content {
+    width: 100%;
+  }
+}

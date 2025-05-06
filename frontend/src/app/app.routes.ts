@@ -4,13 +4,29 @@ import {LoginFormComponent} from './features/auth/login-form/login-form.componen
 import {RegisterFormComponent} from './features/auth/register-form/register-form.component';
 import {HomeComponent} from './features/home/home.component';
 import {ShopComponent} from './features/shop/shop.component';
-import {ProductCardComponent} from './shared/components/product/product-card/product-card.component';
-import {ProductListComponent} from './shared/components/product/product-list/product-list.component';
-import {DropdownComponent} from './shared/components/dropdown/dropdown.component';
 import {ProfileComponent} from './features/profile/profile.component';
 import {authGuard} from './core/guards/auth.guard';
+import {AdminPanelComponent} from './features/admin-panel/admin-panel.component';
+import {DashboardComponent} from './features/admin-panel/components/dashboard/dashboard.component';
+import {
+  AdminProductListComponent
+} from './features/admin-panel/components/admin-product-list/admin-product-list.component';
+import {AdminOrderListComponent} from './features/admin-panel/components/admin-order-list/admin-order-list.component';
 
 export const routes: Routes = [
+  {
+    path: 'admin',
+    component: AdminPanelComponent,
+    data: {
+      roles: ['ADMIN']
+    },
+    canActivate: [authGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'products', component: AdminProductListComponent },
+      { path: 'orders', component: AdminOrderListComponent },
+    ]
+  },
   {
     path: 'auth',
     component: AuthComponent,

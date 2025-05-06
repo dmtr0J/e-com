@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {NgClass, NgOptimizedImage} from '@angular/common';
-import {ButtonComponent} from '../button/button.component';
+import {ButtonComponent} from '../../../../components/button/button.component';
 
 @Component({
   selector: 'app-cart-drawer',
