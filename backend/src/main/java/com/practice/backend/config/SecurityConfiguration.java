@@ -47,22 +47,14 @@ public class SecurityConfiguration {
                 .securityMatcher(API + MATCH_ALL_PATHS)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(
-//                                AUTH_PATH + REGISTER_PATH,
-//                                AUTH_PATH + LOGIN_PATH,
-//                                AUTH_PATH + REFRESH_TOKEN_PATH
                                 AUTH_PATH + MATCH_ALL_PATHS,
                                 USER_PATH + "/exist",
-                                CATEGORY_PATH + MATCH_ALL_PATHS
+                                CATEGORY_PATH + MATCH_ALL_PATHS,
+                                PRODUCT_PATH + MATCH_ALL_PATHS
                         )
                         .permitAll()
-//                        .requestMatchers(
-//
-//                        )
-//                        .hasAuthority(Role.ADMIN.name())
                         .requestMatchers(
-                                //AUTH_PATH + LOGOUT_PATH,
-                                USER_PATH + MATCH_ALL_PATHS,
-                                PRODUCT_PATH + MATCH_ALL_PATHS
+                                USER_PATH + MATCH_ALL_PATHS
                         )
                         .hasAnyAuthority(Role.USER.name(), Role.ADMIN.name())
                 )

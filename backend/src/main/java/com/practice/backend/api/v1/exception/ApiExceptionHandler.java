@@ -156,10 +156,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({
             EntityNotFoundException.class,
+            jakarta.persistence.EntityNotFoundException.class,
             ObjectNotFoundException.class
     })
     public ResponseEntity<Object> handleNotFoundExceptions(
-            EntityNotFoundException ex, WebRequest request) {
+            Exception ex, WebRequest request) {
         ApiError apiError = this.buildErrorOccurred(
                 ex, HttpStatus.NOT_FOUND);
         return this.handleExceptionInternal(ex, apiError, request);

@@ -27,7 +27,7 @@ public class UserBuilder {
     }
 
     private void initDefaultData() {
-        Long randomValue = ThreadLocalRandom.current().nextLong(1, 999999);
+        long randomValue = ThreadLocalRandom.current().nextLong(1, 999999);
         this.user = User.builder()
                 .id(randomValue)
                 .email("email" + randomValue + "@test.com")

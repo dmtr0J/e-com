@@ -26,12 +26,12 @@ public class JwtUtil {
         this.algorithm = Algorithm.HMAC256(secret);
     }
 
-    public String generateAccessToken(String subject) {
-        return this.generateToken(subject, null, accessTokenExpiration);
+    public String generateAccessToken(String subject, Map<String, Object> claims) {
+        return this.generateToken(subject, claims, accessTokenExpiration);
     }
 
-    public String generateRefreshToken(String subject) {
-        return this.generateToken(subject, null, refreshTokenExpiration);
+    public String generateRefreshToken(String subject, Map<String, Object> claims) {
+        return this.generateToken(subject, claims, refreshTokenExpiration);
     }
 
     public String generateToken(String subject, Map<String, Object> claims, long expirationMillis) {

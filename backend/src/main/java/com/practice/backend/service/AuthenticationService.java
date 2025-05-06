@@ -13,7 +13,9 @@ import com.practice.backend.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +31,8 @@ public class AuthenticationService {
         User savedUser = userService.create(
                 registrationConverter.requestToEntity(request));
 
-        String accessToken = jwtUtil.generateAccessToken(savedUser.getEmail());
-        String refreshToken = jwtUtil.generateRefreshToken(savedUser.getEmail());
+        String accessToken = jwtUtil.generateAccessToken(savedUser.getEmail(), buildUserClaims(savedUser));
+        String refreshToken = jwtUtil.generateRefreshToken(savedUser.getEmail(), null);
 
         refreshTokenService.create(new RefreshToken(
                 savedUser,
@@ -44,22 +46,22 @@ public class AuthenticationService {
     public AuthenticationResponse login(LoginRequest request) {
         User user = userService.getOneByEmail(request.getEmail());
 
-        RefreshToken refreshToken = refreshTokenService.getOneByField(RefreshToken_.USER, user);
+        RefreshToken oldRefreshToken = refreshTokenService.getOneByField(RefreshToken_.USER, user);
 
-        if (refreshToken != null) {
-            refreshTokenService.delete(refreshToken);
+        if (oldRefreshToken != null) {
+            refreshTokenService.delete(oldRefreshToken);
         }
 
-        String accessToken = jwtUtil.generateAccessToken(user.getEmail());
-        String newRefreshToken = jwtUtil.generateRefreshToken(user.getEmail());
+        String accessToken = jwtUtil.generateAccessToken(user.getEmail(), buildUserClaims(user));
+        String refreshToken = jwtUtil.generateRefreshToken(user.getEmail(), null);
 
         refreshTokenService.create(new RefreshToken(
                 user,
-                newRefreshToken,
-                jwtUtil.extractExpiration(newRefreshToken)
+                refreshToken,
+                jwtUtil.extractExpiration(refreshToken)
         ));
 
-        return new AuthenticationResponse(accessToken, newRefreshToken);
+        return new AuthenticationResponse(accessToken, refreshToken);
     }
 
     public AuthenticationResponse refreshToken(RefreshAccessTokenRequest request) {
@@ -78,8 +80,8 @@ public class AuthenticationService {
         User user = userService.getOneByEmail(
                 jwtUtil.extractSubject(oldRefreshToken.getToken()));
 
-        String accessToken = jwtUtil.generateAccessToken(user.getEmail());
-        String refreshToken = jwtUtil.generateRefreshToken(user.getEmail());
+        String accessToken = jwtUtil.generateAccessToken(user.getEmail(), buildUserClaims(user));
+        String refreshToken = jwtUtil.generateRefreshToken(user.getEmail(), null);
 
         return new AuthenticationResponse(accessToken, refreshToken);
     }
@@ -91,6 +93,14 @@ public class AuthenticationService {
                 .getByField(RefreshToken_.USER, currentUser);
 
         refreshTokenService.delete(refreshToken);
+    }
+
+    private Map<String, Object> buildUserClaims(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
+        claims.put("role", user.getRole().name());
+
+        return claims;
     }
 
 }

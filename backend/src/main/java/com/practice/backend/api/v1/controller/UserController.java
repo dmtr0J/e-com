@@ -40,7 +40,18 @@ public class UserController extends AbstractController<User, UserRequest, UserRe
 
     @Override
     public UserResponse convertEntityToResponse(User user, List<String> entitiesToExpand) {
-        return getConverter().entityToResponse(user);
+        return UserResponse.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .orders(user.getOrders())
+                .phone(user.getPhone())
+                .firstName(user.getFirstName())
+                .middleName(user.getMiddleName())
+                .lastName(user.getLastName())
+                .birthDate(user.getBirthDate())
+                .build();
+//        return getConverter().entityToResponse(user);
     }
 
     @Override

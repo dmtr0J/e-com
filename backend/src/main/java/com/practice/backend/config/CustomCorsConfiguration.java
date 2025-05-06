@@ -18,12 +18,12 @@ import static org.springframework.http.HttpMethod.DELETE;
 @Configuration
 public class CustomCorsConfiguration implements CorsConfigurationSource {
 
-    @Value("${frontend.url}") private String frontendUrl;
+    private final List<String> allowedUrls = List.of("http://localhost", "http://localhost:80", "http://localhost:4200");
 
     @Override
     public CorsConfiguration getCorsConfiguration(@NonNull HttpServletRequest request) {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(frontendUrl));
+        config.setAllowedOrigins(allowedUrls);
         config.setAllowedMethods(List.of(GET.name(), POST.name(), PUT.name(), DELETE.name(), PATCH.name()));
         config.setAllowCredentials(true);
         config.setAllowedHeaders(List.of(CorsConfiguration.ALL));

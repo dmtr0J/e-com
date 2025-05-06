@@ -3,7 +3,7 @@ package com.practice.backend.api.v1.controller.common;
 import com.practice.backend.api.v1.common.ApiRequest;
 import com.practice.backend.api.v1.common.ApiResponse;
 import com.practice.backend.api.v1.common.PageResponse;
-import com.practice.backend.converter.BaseConverter;
+import com.practice.backend.converter.Converter;
 import com.practice.backend.filtering.common.FilterableProperty;
 import com.practice.backend.filtering.common.SearchCriteria;
 import com.practice.backend.filtering.specification.EntityFilterSpecificationBuilder;
@@ -64,7 +64,7 @@ public abstract class AbstractControllerTest<
 
     protected abstract boolean isPatchingAllowed();
 
-    protected abstract BaseConverter<EntityType, ApiRequestType, ApiResponseType> getConverter();
+    protected abstract Converter<EntityType, ApiRequestType, ApiResponseType> getConverter();
 
     protected abstract AbstractService<EntityType> getService();
 
@@ -154,37 +154,24 @@ public abstract class AbstractControllerTest<
     }
 
     @Test
-    public void testPageSizeValidationForGetAll() {
-        Exception tooLargeSizeException = assertThrows(Exception.class, () ->
-                mockMvc.perform(get(getControllerPath())
-                                .accept(MediaType.APPLICATION_JSON_VALUE)
-                                .param("size", "101"))
-                        .andExpect(status().is4xxClientError())
-        );
+    public void testPageSizeValidationForGetAll() throws Exception {
+        mockMvc.perform(get(getControllerPath())
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .param("size", "101"))
+                .andExpect(status().is4xxClientError());
 
-        Exception negativeSizeException = assertThrows(Exception.class, () ->
-                mockMvc.perform(get(getControllerPath())
-                                .accept(MediaType.APPLICATION_JSON_VALUE)
-                                .param("size", "-1"))
-                        .andExpect(status().is4xxClientError())
-        );
-
-        assertInstanceOf(
-                ConstraintViolationException.class, tooLargeSizeException.getCause());
-        assertInstanceOf(
-                ConstraintViolationException.class, negativeSizeException.getCause());
+        mockMvc.perform(get(getControllerPath())
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .param("size", "-1"))
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
-    public void testPageIndexValidationForGetAll() {
-        Exception exception = assertThrows(Exception.class, () ->
-                mockMvc.perform(get(getControllerPath())
-                                .accept(MediaType.APPLICATION_JSON_VALUE)
-                                .param("index", "-1"))
-                        .andExpect(status().is4xxClientError())
-        );
-        assertInstanceOf(
-                ConstraintViolationException.class, exception.getCause());
+    public void testPageIndexValidationForGetAll() throws Exception {
+        mockMvc.perform(get(getControllerPath())
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .param("index", "-1"))
+                .andExpect(status().is4xxClientError());
     }
 
     @Test

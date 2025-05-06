@@ -96,10 +96,10 @@ public abstract class AbstractController<
         List<ApiResponseType> responses = entitiesPaged.getContent().stream()
                 .map(item -> convertEntityToResponse(item, BaseControllerUtil.parseExpandField(expand))).collect(Collectors.toList());
 
-        PageResponse<ApiResponseType> apiResponseTypePageResponse =
+        PageResponse<ApiResponseType> pageResponse =
                 new PageResponse<>(entitiesPaged.getTotalElements(), entitiesPaged.getNumber(), entitiesPaged.getSize(), responses);
 
-        return ResponseEntity.ok(apiResponseTypePageResponse);
+        return ResponseEntity.ok(pageResponse);
     }
 
     protected Sort mapSortProperties(Sort sort) {
